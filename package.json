@@ -1,0 +1,30 @@
+{
+  "name": "glass-js",
+  "description": "",
+  "version": "1.3.7",
+  "scripts": {
+    "build:all": "cd ./glass-react && pnpm run build && cd ../glass-swc && pnpm run build"
+  },
+  "main": "./glass-react/dist/index.js",
+  "types": "./glass-react/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./glass-react/dist/index.d.ts",
+      "default": "./glass-react/dist/index.js"
+    },
+    "./swc": {
+      "default": "./glass-swc/dist/glass_swc.wasm"
+    }
+  },
+  "files": [
+    "./glass-react/dist/**/*",
+    "./glass-swc/dist/**/*"
+  ],
+  "author": "Glass Devtools, Inc.",
+  "keywords": [
+    "glass",
+    "glassjs",
+    "react"
+  ],
+  "homepage": "https://useglass.ai"
+}

@@ -1,0 +1,122 @@
+
+
+
+
+{/* ```
+// Please book a demo! 🙂
+    _________
+ __|______   |
+|         |  |
+|  Glass  |  |
+|         |__|
+|_________|
+``` */}
+
+
+{/* # Install Glass */}
+
+<span className='flex items-center gap-1'>
+{`First, install the`} 
+<a href='https://marketplace.visualstudio.com/items?itemName=Glassjs.glassjs' className='group inline-flex flex-row items-center text-[14px] text-blue-700 hover:text-blue-500 transition-all duration-300 rounded-lg gap-0'>
+{`Glass VSCode Extension`}
+<img src='/glass-sm.svg' alt='Glass Logo' className='size-6 rounded-sm group-hover:brightness-105 duration-200' />{'.'}
+</a>
+
+</span>
+{/* This lets Glass edit your source code so you don't have to leave the browser. */}
+
+
+Next, install the glass-js package in your project:
+```
+npm install glass-js
+# OR
+yarn add glass-js
+# OR
+pnpm add glass-js
+```
+
+
+
+
+{/* # Add Glass to your project */}
+
+
+Next, add the SWC plugin to your next.config.js file. This allows Glass to locate what you clicked on in your source code.
+
+```
+// next.config.js
+const nextConfig = {
+  ...
+  experimental: {
+    swcPlugins: [["glass-js/swc", {}]]
+  }
+};
+
+module.exports = nextConfig;
+
+```
+
+
+
+Finally, add the GlassProvider to your project: 
+
+## With App router
+```
+// app/layout.js
+import GlassProvider from 'glass-js'
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <GlassProvider>
+          {children}
+        </GlassProvider>
+      </body>
+    </html>
+  )
+}
+```
+## With Pages router
+```
+// pages/_app.js
+import GlassProvider from 'glass-js'
+
+export default function App({ Component, pageProps }) {
+  return (
+    <>
+      <GlassProvider>
+        <Component {...pageProps} />
+      </GlassProvider>
+    </>
+  )
+}
+
+```
+
+## Add your OpenAI key
+
+Go in VSCode's settings (press Ctrl+,), search Glass, and enter your key.
+
+
+
+
+{/* ## With ES Modules
+```
+// next.config.mjs
+const nextConfig = {
+  experimental: {
+    swcPlugins: [["@glassjs/swc", {}]]
+  }
+};
+
+export default nextConfig;
+```
+
+## Without ES Modules */}
+
+
+{/*
+## With Babel
+Alternatively, you can add the Glass babel plugin to your project instead of the SWC plugin. This is not recommended since babel is slower than SWC.
+*/}

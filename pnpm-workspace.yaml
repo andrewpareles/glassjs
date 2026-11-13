@@ -1,0 +1,10 @@
+packages:
+  # include packages in subfolders (e.g. apps/ and packages/)
+  # just all subfolders
+  - 'glass-react'
+  - 'glass-swc'
+  - 'www'
+  # exclude everything in test
+  - '!vscode-extension'
+  - '!test'
+  

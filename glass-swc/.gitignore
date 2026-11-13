@@ -1,0 +1,4 @@
+glass_swc.wasm
+node_modules/
+target/
+dist/

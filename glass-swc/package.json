@@ -1,0 +1,9 @@
+{
+  "description": "just a dev package for glass-swc, not published",
+  "scripts": {
+    "build": "cargo build --target wasm32-wasi --release && rimraf dist && mkdir dist && cp ./target/wasm32-wasi/release/glass_swc.wasm ./dist/glass_swc.wasm"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
+}

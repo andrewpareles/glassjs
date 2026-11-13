@@ -1,0 +1,7 @@
+# this sets the max width of the autoformatter to be bigger
+max_width = 200
+
+# these make if statements allowed to be 1 line
+empty_item_single_line = true
+fn_single_line = true
+where_single_line = true

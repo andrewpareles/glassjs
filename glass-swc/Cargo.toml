@@ -1,0 +1,33 @@
+[package]
+name = "glass_swc"
+description = "SWC plugin for glass"
+version = "0.1.0"
+edition = "2021"
+
+
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+
+
+[dependencies]
+serde_json = "1.0.107"
+swc_core   = { version = "0.95.2", features = ["ecma_plugin_transform"] }
+serde          = { version = "1.0.203", features = ["derive"] }
+swc_atoms      = "0.6.7"
+swc_common     = "0.34.1"
+swc_ecma_ast   = "0.115.0"
+swc_ecma_utils = "0.130.0"
+swc_ecma_visit = "0.101.0"
+
+
+
+[dev-dependencies]
+swc_ecma_parser             = "0.143.11"
+swc_ecma_transforms_base    = "0.137.16"
+swc_ecma_transforms_testing = "0.140.17"
+testing                     = "0.35.21"
+
+
+
