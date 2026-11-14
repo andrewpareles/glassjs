@@ -613,7 +613,7 @@ const GlassSideBar = ({ childrenWrapperRef, debug }: { childrenWrapperRef: Mutab
             return [null, null]
 
         let info = selectedHTML['data-glass_info'];
-        if (!info) { console.error(`Glass object was null. Make sure you've installed Glass-swc properly - it's easy, see https://useglass.ai.`, selectedHTML); return [null, null] }
+        if (!info) { console.error(`Glass object was null. Make sure you've installed Glass-swc properly - it's easy, see https://glassjs.com.`, selectedHTML); return [null, null] }
 
         let caller_info = selectedHTML['data-__glass_caller_info__']
         let caller_key = selectedHTML['data-__glass_caller_key__']
@@ -1088,7 +1088,7 @@ const GlassSideBar = ({ childrenWrapperRef, debug }: { childrenWrapperRef: Mutab
             }} className='absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 py-2 px-1 rounded-l-lg shadow-md flex justify-center items-center'>
                 {/* {isSidebarMinimized ? <FaChevronLeft /> : <FaChevronRight />} */}
                 <div className='h-5 w-5'>
-                    <img src='https://useglass.ai/glass.svg' alt='Glass Logo' />
+                    <img src='https://glassjs.com/glass.svg' alt='Glass Logo' />
                 </div>
             </button>
         </div>

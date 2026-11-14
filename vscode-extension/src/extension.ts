@@ -868,7 +868,7 @@ const validateReqBody = (req_body_: unknown): string | undefined => {
 	const { globalPaths, instructions: GPT_instructions, startLine, endLine, startCol, endCol } = req_body;
 	let presentParams = [globalPaths, GPT_instructions, startLine, endLine, startCol, endCol].map(v => v !== undefined);
 	if (presentParams.some(v => !v)) {
-		const message = `Not all params were sent - this usually happens because glass-swc is not properly installed (please see the swc step at https://useglass.ai/).`;
+		const message = `Not all params were sent - this usually happens because glass-swc is not properly installed (please see the swc step at https://glassjs.com/).`;
 		console.log(`Not all parameters were sent to the server: ${JSON.stringify(presentParams)}.`);
 		// vscode.window.showInformationMessage(message);
 		return message;

@@ -2,15 +2,17 @@
 
 <p align="center"><img src="www/public/glass.svg" alt="Glass logo" width="100" /></p>
 
-[Glass](https://glassjs.com) was an early (Summer 2024!) vibe-coding tool that let you build websites without looking at your code. We released it at a time when auto-complete was the AI coding standard, and when AI couldn't edit files yet, only output text. Coding has come an incredible way since then.
+[Glass](https://glassjs.com) was an early (Summer 2024!) vibe-coding tool that let you build websites without looking at your code. We released it at a time when auto-complete was the AI coding standard and when AI couldn't edit files yet, only output text. Coding has come an incredible way since then.
 
-Building Glass required some clever engineering to identify the exact file on your computer that was selected (described below), based on where you clicked on the rendered HTML. We implement something similar to a sourcemap, but with more information. We also do some complex parameter injection so that HTML elements know the exact Component they live on (even though this information is erased when rendering).
+There was some clever engineering involved in order to identify the exact file on your computer that was selected (described below) based on where you clicked on the rendered HTML. We implement something similar to a sourcemap, but with more information. We also do some complex parameter injection so that HTML elements know the exact Component they live on (even though this information is erased when rendering).
 
-Glass is also special because it erases all traces of itself in the code, unlike other component-click tools (which insert classNames into your sourcecode).
-
-To use Glass, import the npm package `glass-js`, add the `<GlassProvider />` component to your app, and install the SWC plugin to your config.
+Glass is also special because it erases all traces of itself in the code (unlike other similar tools that insert classNames into the sourcecode, which is unacceptable for developer teams).
 
 We open-sourced Glass in November 2026.
+
+## Using Glass
+
+To use Glass, import the npm package `glass-js`, add the `<GlassProvider />` component to your app, and install the SWC plugin to your config.
 
 ## Explanation
 
