@@ -2,7 +2,7 @@
 
 <p align="center"><img src="www/public/glass.svg" alt="Glass logo" width="100" /></p>
 
-Glass was an early (Summer 2024!) vibe-coding tool that let you build websites without looking at your code. We released it at a time when auto-complete was the AI coding standard, and when AI couldn't edit files yet, only output text. Coding has come an incredible way since then.
+[Glass](https://glassjs.com) was an early (Summer 2024!) vibe-coding tool that let you build websites without looking at your code. We released it at a time when auto-complete was the AI coding standard, and when AI couldn't edit files yet, only output text. Coding has come an incredible way since then.
 
 Building Glass required some clever engineering to identify the exact file on your computer that was selected (described below), based on where you clicked on the rendered HTML. We implement something similar to a sourcemap, but with more information. We also do some complex parameter injection so that HTML elements know the exact Component they live on (even though this information is erased when rendering).
 
@@ -16,13 +16,17 @@ We open-sourced Glass in November 2026.
 
 The relevant directories are `glass-react`, `glass-swc`, and `vscode-extension`. 
 
-The other directories are irrelevant (`babel-extension` is not used, and `www` is a Next.js project that renders what you see on https://useglass.ai).
+The other directories are irrelevant (`babel-extension` is not used, and `www` is a Next.js project that renders what you see on https://glassjs.com).
 
 The names of the attributes below might be wrong, but the ideas are all here:
 
-Glass first takes the user's code and re-writes all the files, adding `data-glass-info='componentName=..., filePath:..., startLine:..., endLine:..., usedByFunction:..., etc'` to each `<JSX>` tag (both `<MyComponent>` and `<div>` have this added, but they're treated slightly differently, see code for full details). The new code goes in `src2/`. This means during runtime we can tell which file and line number each element came from, and even what instance of the component it's from! (we added the ability to tell two different instances of a Component apart if they live in different places in the code, by having our swc plugin modify all functions so that they take in a unique identifier and add it as the value to `data-glass-identifier` to all JSX tags!). 
+Glass's SWC plugin essentially takes every `.tsx` file in the codebase and re-writes it, adding `data-glass-info='componentName=..., filePath:..., startLine:..., endLine:..., usedByFunction:..., etc'` to each `<JSX>` tag. This happens to both `<Components>` and primitives like `<div>`, but with slightly different parameters.
 
-Every single primitive (`<div>`, etc) gets a `data-glass-info` attribute. This seems like a lot of redundant info (why not just put it in the root div of each component, and that's it?), but it was the simplest way to include all edge cases like Fragments `<></>`, which can't have attributes. All the `data-glass-*` attributes get processed by us (`GlassProvider`) during runtime, and removed right after so the user doesn’t see a ton of attributes polluting their inspect. 
+In order to identify the exact line of code an instance of a component was from based on where you clicked (which is normally not possible because a component can be used in many places), the SWC plugin also does "parameter injection", modifying all functions to take in a unique identifier. It then modifies all JSX tags to pass in `data-glass-identifier` as an attribute so that the HTML can pick up on it.
+
+In order to implement the core functionality of identifying the file and line number based on an HTML element you click on in the browser, every primitive (`<div>`, etc) gets a `data-glass-info` attribute, containing all of this information. This might seem like a lot of redundant information, compared with e.g. simply putting the information in the root div of the component, but this is the only way to include Fragments `<></>`, which can't have attributes.
+
+The attributes like `data-glass-*` that the Glass SWC adds in never show up in the original sourcecode, and our `GlassProvider` parses and removes them during runtime, so they are nearly invisible during all stages in time.
 
 ## Running
 
